@@ -1,13 +1,21 @@
+p, button {
+	font-size: 1em;
+}
+
 body {
 	background-color: #96A8C8;
 }
 
-div {
-	margin: auto;
+div.xkbox {
+	margin: 2px;
 	border: 1.5px #000 solid;
 	border-radius: 12px;
 	background-color: #fff;
 	padding: 15px;
+}
+
+main {
+	margin: auto;
 }
 
 img {
@@ -19,21 +27,53 @@ span {
 	font-family: monospace;
 }
 
+.top {
+	display: flex;
+	flex-direction: row;
+}
+
+#topleft {
+	flex-basis: 166px;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+button {
+	display: block;
+	background-color: transparent;
+	border: none;
+	font-family: serif;
+}
+button:hover {
+	background-color: #ddd;
+}
+button:active {
+	background-color: #aaa;
+}
+#topright {
+	flex-basis: 100%;
+	flex-grow: 1000;
+	flex-shrink: 1000;
+}
 
 #frames {
-	margin-top: 5px;
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 }
 
+p:first-child {
+	margin-top: 0;
+}
+p:last-child {
+	margin-bottom: 0;
+}
 
 
-@media (min-width: 850px) {
-	#frames {
+@media (min-width: 900px) {
+	main {
 		width: 80%;
 	}
 	.top {
-		width: 70%;
+		width: 100%;
 	}
 }

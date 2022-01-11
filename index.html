@@ -4,12 +4,28 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="style.css" />
 <script src="frames.js" defer></script>
+<script src="compare.js" defer></script>
+<script src="events.js" defer></script>
 </head>
 <body>
+<main>
 <div class="top">
+<div class="xkbox" id="topleft">
+	<button id="view-tile">Tile/gallery</button>
+	<button id="view-compare">Compare</button>
+</div>
+<div class="xkbox" id="topright">
 <p>This is available on <a href="https://github.com/munvoseli/xkcd-countdown">GitHub.</a>  There is the program I am using to automatically check for updates.</p>
 <p>It looks like it started on 01-10 17:00, and will end at 01-31 15:00 UTC.  In your browser's local time, that's <span id="dateend"></span>.  I currently hypothesize that, after the first frame, it is updating every four hours, when the UTC hours are divisible by 4 (00:00, 04:00, 08:00...).  The next one should be in <span id="minsuntil"></span> minutes at <span id="datenext"></span>.</p>
 </div>
-<div id="frames"></div>
+</div>
+<div id="frames" class="xkbox"></div>
+<div id="div-compare" class="xkbox" style="display:none">
+	<input id="compare-0" value="1" type="number" />
+	<input id="compare-1" value="5" type="number" />
+	<button id="compare-sub">Compare</button>
+	<canvas id="compare-out"></canvas>
+</div>
+</main>
 </body>
 </html>
