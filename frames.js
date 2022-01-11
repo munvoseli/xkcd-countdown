@@ -19,7 +19,7 @@ for (let i = 0; i < frames.length; ++i) {
 	document.getElementById("frames").appendChild(img);
 }
 
-document.getElementById("dateend").innerHTML = new Date("2022-01-31").toLocaleString();
+document.getElementById("dateend").innerHTML = new Date("31 Jan 2022 15:00:00 UTC").toLocaleString();
 
 
 function updateTime() {
