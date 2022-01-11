@@ -19,4 +19,16 @@ for (let i = 0; i < frames.length; ++i) {
 	document.getElementById("frames").appendChild(img);
 }
 
-document.getElementById("localend").innerHTML = new Date("2022-01-31").toLocaleString();
+document.getElementById("dateend").innerHTML = new Date("2022-01-31").toLocaleString();
+
+
+function updateTime() {
+	let nowd = new Date();
+	let nowm = (nowd.getUTCHours() * 60 + nowd.getUTCMinutes()) % 240; // 240 = 60 * 4
+	let untilm = 240 - nowm;
+	let thend = new Date(nowd.getTime() + untilm * 60000);
+	thend.setSeconds(0);
+	document.getElementById("minsuntil").innerHTML = untilm;
+	document.getElementById("datenext").innerHTML = thend.toLocaleString();
+}
+updateTime();
