@@ -18,7 +18,7 @@ for (let i = 0; i < frames.length; ++i) {
 	let img = document.createElement("img");
 	img.src = `https://xkcd.com/count-wimRikmef/imgs/${hash}.png`;
 	img.setAttribute("alt", i + 1);
-	img.setAttribute("title", i + 1);
+	img.setAttribute("title", i + 1 + " " + hash.substring(0,3));
 	document.getElementById("frames").appendChild(img);
 }
 
