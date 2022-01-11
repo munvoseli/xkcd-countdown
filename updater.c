@@ -36,7 +36,7 @@ int main() {
 	for(;;) {
 		printf("Making request...   ");
 		res = curl_easy_perform(curl);
-		sleep(5);
+		sleep(60);
 	}
 	return 0;
 }
