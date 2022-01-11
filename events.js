@@ -2,7 +2,7 @@ let divFrames = document.getElementById("frames");
 let divCompare = document.getElementById("div-compare");
 
 document.getElementById("view-tile").addEventListener("click", function() {
-	divFrames.style.display = "block";
+	divFrames.style.display = "flex";
 	divCompare.style.display = "none";
 }, false);
 document.getElementById("view-compare").addEventListener("click", function() {
