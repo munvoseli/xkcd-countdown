@@ -18,7 +18,7 @@ void stateCallback(void* datap, size_t size, size_t nmemb, void* userp) {
 			(cuserp)[i] = (cdatap)[i + 8];
 		}
 		FILE* fp = fopen("frames.txt", "a");
-		fprintf(fp, "%s\n", cuserp);
+		fprintf(fp, "%s\n", cdatap);
 		fclose(fp);
 	} else {
 		printf("Same.   %s\n", cuserp);
