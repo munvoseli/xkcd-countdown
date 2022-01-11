@@ -15,3 +15,4 @@ for (let i = 0; i < frames.length; ++i) {
 	document.getElementById("frames").appendChild(img);
 }
 
+document.getElementById("localend").innerHTML = new Date("2022-01-31").toLocaleString();
