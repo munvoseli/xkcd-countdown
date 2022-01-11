@@ -32,3 +32,4 @@ function updateTime() {
 	document.getElementById("datenext").innerHTML = thend.toLocaleString();
 }
 updateTime();
+setInterval(updateTime, 60000);
