@@ -19,6 +19,8 @@ ac84f99b9c41eb75e1a595ea74c7bccf48f36c345d8b88ad5dd478d4520bc0b2 10?16:00 , 10 1
 62081002ad92456a911eae8eae3f3d74f8147eab8f42330d4f81c473aaa648ba 12 6:40:41
  my internet went down while i was sleeping
 8883103b355c6cbaa0cc5f78867bfc9fee1e2e4295ccec1a0af1bd4bdd27cc6a 12 13:17:16
+ program is currently out of commission.  so sad.  alexa play "a new day (rain animated series)"
+6782889ad1cf7ebdf154672b58f7260df61662537ca00536efeb3470c29d66b1 12 14:23
 `.split("\n");
 framesFull.pop();
 framesFull = framesFull.filter(x => x[0]!=" ");
