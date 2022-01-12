@@ -44,7 +44,7 @@ int main() {
 	george.hash[64] = 0;
 	george.errorTracker = 0;
 	char errorTracker = 0;
-	char* errarr[] = {"ffplay", MEGALOVANIA, NULL};
+	char* errarr[] = {"ffplay", "-autoexit", MEGALOVANIA, NULL};
 	CURLcode res;
 	CURL* curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL,
