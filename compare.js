@@ -1,12 +1,32 @@
 
 function compare_im(ima, imb, canvas) {
+	let can1 = document.createElement("canvas");
+	let ctx1 = can1.getContext("2d");
+	can1.width = ima.naturalWidth;
+	can1.height = ima.naturalHeight;
+	ctx1.drawImage(ima, 0, 0);
+	ctx1.globalCompositeOperation = "multiply";
+	ctx1.fillStyle = "#ff7f00";
+	ctx1.fillRect(0, 0, can1.width, can1.height);
+
+	let can2 = document.createElement("canvas");
+	let ctx2 = can2.getContext("2d");
+	can2.width = imb.naturalWidth;
+	can2.height = imb.naturalHeight;
+	ctx2.drawImage(imb, 0, 0);
+	ctx2.globalCompositeOperation = "multiply";
+	ctx2.fillStyle = "#0080ff";
+	ctx2.fillRect(0, 0, can2.width, can2.height);
+
 	canvas.width = ima.naturalWidth;
 	canvas.height = ima.naturalHeight;
 	let ctx = canvas.getContext("2d");
-	ctx.drawImage(ima, 0, 0);
-	ctx.globalCompositeOperation = "difference";
-	ctx.drawImage(imb, 0, 0);
-	console.log(canvas, ctx);
+	ctx.globalCompositeOperation = "lighter";
+	ctx.drawImage(can1, 0, 0);
+	ctx.drawImage(can2, 0, 0);
+//	ctx.drawImage(ima, 0, 0);
+//	ctx.globalCompositeOperation = "difference";
+//	ctx.drawImage(imb, 0, 0);
 }
 
 function compare_id(ida, idb, outimg) {
