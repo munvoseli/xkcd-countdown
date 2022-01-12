@@ -1,5 +1,6 @@
 
 function compare_im(ima, imb, canvas) {
+	// must do this with globalCompositeOperation bc cors
 	let can1 = document.createElement("canvas");
 	let ctx1 = can1.getContext("2d");
 	can1.width = ima.naturalWidth;

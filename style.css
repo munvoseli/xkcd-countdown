@@ -77,3 +77,22 @@ p:last-child {
 		width: 100%;
 	}
 }
+
+/*
+@media (min-width: 1000px) {
+	body {
+		background-image:
+			linear-gradient(#96A8C8,#96A8C8),
+			linear-gradient(#c896a8,#c896a8),
+			linear-gradient(#ccc,#ccc),
+			linear-gradient(#c896a8,#c896a8),
+			linear-gradient(#96A8C8,#96A8C8);
+		background-size:
+			20% 100%,
+			40% 100%,
+			60% 100%,
+			80% 100%,
+			100% 100%;
+		background-repeat: no-repeat;
+	}
+}*/
