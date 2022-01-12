@@ -78,7 +78,7 @@ p:last-child {
 	}
 }
 
-/*
+
 body {
 	background-image:
 		linear-gradient(90deg,
@@ -91,7 +91,7 @@ body {
 			#c869a8 80%,
 			#96a8c8 80%
 			);
-}*/
+}
 
 /*
 @media (min-width: 1000px) {
