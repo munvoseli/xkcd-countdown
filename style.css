@@ -79,6 +79,21 @@ p:last-child {
 }
 
 /*
+body {
+	background-image:
+		linear-gradient(90deg,
+			#96a8c8 20%,
+			#c869a8 20%,
+			#c869a8 40%,
+			#cccccc 40%,
+			#cccccc 60%,
+			#c869a8 60%,
+			#c869a8 80%,
+			#96a8c8 80%
+			);
+}*/
+
+/*
 @media (min-width: 1000px) {
 	body {
 		background-image:
