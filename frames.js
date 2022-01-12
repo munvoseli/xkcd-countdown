@@ -22,16 +22,23 @@ ac84f99b9c41eb75e1a595ea74c7bccf48f36c345d8b88ad5dd478d4520bc0b2 10?16:00 , 10 1
  program is currently out of commission.  so sad.  alexa play "a new day (rain animated series)"
 6782889ad1cf7ebdf154672b58f7260df61662537ca00536efeb3470c29d66b1 12 14:23
 c3c55c15f1c5a37018c0545fd05457ca83540300d656b906e7aaede2c7d81123 12 18:7:39
+8ec35a2a74c75a736fc4e8bf119278494e439d82b3949a75c43413b230223b22 12 21:48:53
 `.split("\n");
 framesFull.pop();
 framesFull = framesFull.filter(x => x[0]!=" ");
 
 let frames = framesFull.map(x=>x.substring(0,64));
 let frameInfos = framesFull.map(x=>x.substring(65));
+let frameImages = [];
+frameImages.length = frames.length;
 
 for (let i = 0; i < frames.length; ++i) {
 	let hash = frames[i];
-	let img = document.createElement("img");
+	let img = new Image(); //document.createElement("img");
+	let j = i;
+	img.onload = function() {
+		frameImages[j] = img;
+	};
 	img.src = `https://xkcd.com/count-wimRikmef/imgs/${hash}.png`;
 	img.setAttribute("alt", i + 1);
 	img.setAttribute("title", i + 1 + " " + hash.substring(0,3) + " " + frameInfos[i]);
@@ -40,7 +47,7 @@ for (let i = 0; i < frames.length; ++i) {
 
 document.getElementById("dateend").innerHTML = new Date("31 Jan 2022 15:00:00 UTC").toLocaleString();
 
-
+/*
 function updateTime() {
 	let nowd = new Date();
 	let nowm = (nowd.getUTCHours() * 60 + nowd.getUTCMinutes()) % 240; // 240 = 60 * 4
@@ -51,4 +58,4 @@ function updateTime() {
 	document.getElementById("datenext").innerHTML = thend.toLocaleString();
 }
 updateTime();
-setInterval(updateTime, 60000);
+setInterval(updateTime, 60000);*/
