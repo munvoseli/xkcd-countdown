@@ -45,6 +45,7 @@ int main() {
 	george.errorTracker = 0;
 	char errorTracker = 0;
 	char* errarr[] = {"ffplay", "-autoexit", MEGALOVANIA, NULL};
+//	char* errenv[] = {NULL};
 	CURLcode res;
 	CURL* curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL,
@@ -59,7 +60,9 @@ int main() {
 		errorTracker ^= 1;
 		if (errorTracker != george.errorTracker) {
 			printf(":(\n");
-			execv("/bin/ffplay", errarr);
+			// alternatively, popen
+			if (fork() == 0)
+				execv("/bin/ffplay", errarr);
 		}
 		sleep(60);
 	}
