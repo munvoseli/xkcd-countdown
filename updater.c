@@ -42,8 +42,6 @@ int main() {
 	Apioform george;
 	george.hash[0] = 0;
 	george.hash[64] = 0;
-	george.errorTracker = 0;
-	char errorTracker = 0;
 	char* errarr[] = {"ffplay", "-autoexit", MEGALOVANIA, NULL};
 //	char* errenv[] = {NULL};
 	CURLcode res;
@@ -56,9 +54,9 @@ int main() {
 	for(;;) {
 		printf("Making request...   ");
 		fflush(stdout);
+		george.errorTracker = 0;
 		res = curl_easy_perform(curl);
-		errorTracker ^= 1;
-		if (errorTracker != george.errorTracker) {
+		if (george.errorTracker == 0) {
 			printf(":(\n");
 			// alternatively, popen
 			if (fork() == 0)
