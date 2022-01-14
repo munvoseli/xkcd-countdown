@@ -39,6 +39,9 @@ let frameInfos = framesFull.map(x=>x.substring(65));
 let frameImages = [];
 frameImages.length = frames.length;
 
+let frameW = 320;
+let frameH = 200;
+
 for (let i = 0; i < frames.length; ++i) {
 	let hash = frames[i];
 	let img = new Image(); //document.createElement("img");

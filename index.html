@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="style.css" />
 <script src="frames.js" defer></script>
 <script src="compare.js" defer></script>
+<script src="animation.js" defer></script>
 <script src="events.js" defer></script>
 </head>
 <body>
@@ -13,6 +14,7 @@
 <div class="xkbox" id="topleft">
 	<button id="view-tile">Tile/gallery</button>
 	<button id="view-compare">Compare</button>
+	<button id="view-anim">Animate</button>
 </div>
 <div class="xkbox" id="topright">
 <p>This is available on <a href="https://github.com/munvoseli/xkcd-countdown">GitHub.</a>  There is the program I am using to automatically check for updates.</p>
@@ -26,6 +28,10 @@
 	<input id="compare-1" value="9" type="number" />
 	<button id="compare-sub">Compare</button>
 	<canvas id="compare-out"></canvas>
+</div>
+<div id="div-anim" class="xkbox" style="display:none">
+	<button id="btn-anim">Play animation</button>
+	<canvas id="can-anim"></canvas>
 </div>
 </main>
 </body>
