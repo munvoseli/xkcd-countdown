@@ -1,3 +1,7 @@
+function g(id) {
+	return document.getElementById(id);
+}
+
 // https://xkcd.com/count-wimRikmef/state
 
 let framesFull = `\
@@ -30,9 +34,12 @@ c3c55c15f1c5a37018c0545fd05457ca83540300d656b906e7aaede2c7d81123 12 18:7:39
 80cca5046c30c2cf6168d4a03db4389b7151ada62cf2e0574200704d79ea9408 13 16:43:43
 6a0cebd417060775dfa2c738a4dae86cd28e7393d6dbca1421fd6f246dc5cb4b 13 20:25:41
 3be4fdde63c2b0b1b71f594255c7623815eaf4712e89a6585fc48fd7b40ad74f 14 0:12:11
+e77b15a15bb84704360cf6706fff67f82042b55d505a8a5b3dbd66bd6e10ba8f 14 4:3:11
 `.split("\n");
 framesFull.pop();
 framesFull = framesFull.filter(x => x[0]!=" ");
+
+let frameCountLoaded = 0;
 
 let frames = framesFull.map(x=>x.substring(0,64));
 let frameInfos = framesFull.map(x=>x.substring(65));
@@ -47,7 +54,10 @@ for (let i = 0; i < frames.length; ++i) {
 	let img = new Image(); //document.createElement("img");
 	let j = i;
 	img.onload = function() {
+		++frameCountLoaded;
 		frameImages[j] = img;
+		g("frame-progress").innerHTML =
+			frameCountLoaded + "/" + frames.length;
 	};
 	img.src = `https://xkcd.com/count-wimRikmef/imgs/${hash}.png`;
 	img.setAttribute("alt", i + 1);
