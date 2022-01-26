@@ -26,14 +26,6 @@ typedef struct Apioform {
 	Succode a_succode[20];
 } Apioform;
 
-
-static void printSuccodeRecords(Succode* a_succode, size_t n_succode) {
-	for (int i = 0; i < 20; ++i)
-		mvprintw(i + 1, 5, "%d %d", a_succode[i].code, a_succode[i].n);
-	mvprintw(0 + n_succode, 2, "  ");
-	mvprintw(1 + n_succode, 2, "->");
-}
-
 static void printStatus(const char* status) {
 	move(21, 0);
 	clrtoeol();
@@ -41,8 +33,12 @@ static void printStatus(const char* status) {
 }
 
 static void printGeorge(Apioform* georgep) {
-	clear();
-	printSuccodeRecords(georgep->a_succode, georgep->n_succode);
+	clear(); // redraw everything to avoid resizing and ffplay issues
+	// print records
+	for (int i = 0; i < 20; ++i)
+		mvprintw(i + 1, 5, "%d %d", georgep->a_succode[i].code, georgep->a_succode[i].n);
+	mvprintw(1 + georgep->n_succode, 2, "->");
+	// print status
 	static const char* messages[] = {
 		"NULL", "Error in request", "Same.", "Different!"
 	};
@@ -66,7 +62,6 @@ static size_t stateCallback(void* datap, size_t size, size_t nmemb, void* userp)
 	georgep->jsonstr[acsize] = 0;
 	if (isDifferent) {
 		georgep->curr_code = 3;
-		printStatus("Different");
 		for (unsigned char i = 0; i < 64; ++i) {
 			georgep->hash[i] = (cdatap)[i + 8];
 		}
@@ -75,9 +70,20 @@ static size_t stateCallback(void* datap, size_t size, size_t nmemb, void* userp)
 		fclose(fp);
 	} else {
 		georgep->curr_code = 2;
-		printStatus("Same.");
 	}
 	return acsize;
+}
+
+void playAlarm() {
+	static char* errarr[] = {"ffplay", "-loglevel", "-8", "-autoexit", MEGALOVANIA, NULL};
+	// alternatively, popen
+	int pid = fork();
+	if (pid == 0) {
+		execv("/bin/ffplay", errarr);
+		exit(0);
+	} else if (pid < 0) {
+		exit(1);
+	}
 }
 
 int main() {
@@ -94,42 +100,37 @@ int main() {
 		george.a_succode[i].n = 0;
 	}
 	george.n_succode = 0;
-	char* errarr[] = {"ffplay", "-loglevel", "-8", "-autoexit", MEGALOVANIA, NULL};
 	CURLcode res;
-	CURL* curl = curl_easy_init();
-	curl_easy_setopt(curl, CURLOPT_URL,
-		"https://xkcd.com/count-wimRikmef/state");
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, stateCallback);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &george);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 20L);
 	for(;;) {
 		george.errorTracker = 0;
-		printStatus("Making request...   ");
-//		fflush(stdout);
-//		printStatus("ksdfjlsf");
+		printStatus("Making request...");
+		refresh();
+		CURL* curl = curl_easy_init();
+		curl_easy_setopt(curl, CURLOPT_URL,
+			"https://xkcd.com/count-wimRikmef/state");
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, stateCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &george);
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 20L);
+		// note: returns immediately
+		// if cannot resolve host
 		res = curl_easy_perform(curl);
+		curl_easy_cleanup(curl);
 		if (george.errorTracker == 0) {
-//			printf(":(\n");
-			// alternatively, popen
-//			if (fork() == 0) {
-//				execv("/bin/ffplay", errarr);
-//				return 0;
-//			}
-			system("/bin/ffplay -loglevel -8 -autoexit -nodisp " MEGALOVANIA);
+			// i think system is blocking
+			system("/bin/ffplay -loglevel -8 -autoexit " MEGALOVANIA);
+//			playAlarm();
 			george.curr_code = 1;
-			printStatus("Error in request!");
 		}
 		if (george.a_succode[george.n_succode].code != george.curr_code) {
 			++george.n_succode;
 			george.n_succode %= 20;
 			george.a_succode[george.n_succode].code = george.curr_code;
 		}
-//		mvprintw(4,0, "%d %d", george.n_succode, george.a_succode[george.n_succode].n);
 		george.a_succode[george.n_succode].n += 1;
-//		printSuccodeRecords(george.a_succode, george.n_succode);
 		printGeorge(&george);
-		sleep(6);
-//		getch();
+//		mvprintw(0,0, "%d", res);
+		refresh();
+		sleep(60);
 	}
 	endwin();
 	curl_global_cleanup();
