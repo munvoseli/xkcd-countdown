@@ -1,2 +1,2 @@
 all:
-	gcc updater.c `pkg-config --cflags --libs libcurl`
+	gcc updater.c `pkg-config --cflags --libs libcurl ncurses`
