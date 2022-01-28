@@ -21,14 +21,16 @@ for (let i = 0; i < frames.length; ++i) {
 	let j = i;
 	img.onload = function() {
 		++frameCountLoaded;
-		frameImages[j] = img;
 		g("frame-progress").innerHTML =
 			frameCountLoaded + "/" + frames.length;
 	};
 	img.src = `https://xkcd.com/count-wimRikmef/imgs/${hash}.png`;
 	img.setAttribute("alt", i + 1);
 	img.setAttribute("title", i + 1 + " " + hash.substring(0,3) + " " + frameInfos[i]);
-	document.getElementById("frames").appendChild(img);
+	frameImages[j] = img;
+}
+for (let i = frames.length - 1; i >= 0; --i) {
+	document.getElementById("frames").appendChild(frameImages[i]);
 }
 
 document.getElementById("dateend").innerHTML = new Date("31 Jan 2022 15:00:00 UTC").toLocaleString();
