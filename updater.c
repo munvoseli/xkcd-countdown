@@ -125,6 +125,7 @@ int main() {
 			++george.n_succode;
 			george.n_succode %= 20;
 			george.a_succode[george.n_succode].code = george.curr_code;
+			george.a_succode[george.n_succode].n = 0;
 		}
 		george.a_succode[george.n_succode].n += 1;
 		printGeorge(&george);
