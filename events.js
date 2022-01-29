@@ -74,8 +74,11 @@ function ytPlayerReady(e) {
 	}, 100);
 	setTimeout(function() {
 		g("bee").innerHTML += "<br>DOWNLOAD MULTIPLAYER EMACS FOR ONLY 99 KROMER<br>";
-	}, 10000);
+	}, 5000);
 	setTimeout(function() {
-		g("bee").innerHTML += "<br>GEORGE IS IMMORTAL<br>";
-	}, 20000);
+		alert("GEORGE IS IMMORTAL");
+	}, 17000);
+	setTimeout(function() {
+		g("bee").innerHTML += "<img src='https://www.ikea.com/us/en/images/products/blahaj-soft-toy-shark__0877368_pe633607_s5.jpg'>";
+	}, 27000);
 }
