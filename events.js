@@ -72,4 +72,10 @@ function ytPlayerReady(e) {
 			g("bee").innerHTML += beemovie[bee];
 		++bee;
 	}, 100);
+	setTimeout(function() {
+		g("bee").innerHTML += "<br>DOWNLOAD MULTIPLAYER EMACS FOR ONLY 99 KROMER<br>";
+	}, 10000);
+	setTimeout(function() {
+		g("bee").innerHTML += "<br>GEORGE IS IMMORTAL<br>";
+	}, 20000);
 }
