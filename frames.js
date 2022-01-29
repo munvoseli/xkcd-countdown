@@ -33,6 +33,9 @@ for (let i = frames.length - 1; i >= 0; --i) {
 	document.getElementById("frames").appendChild(frameImages[i]);
 }
 
+document.getElementById("compare-0").value = frames.length - 1;
+document.getElementById("compare-1").value = frames.length;
+
 document.getElementById("dateend").innerHTML = new Date("31 Jan 2022 15:00:00 UTC").toLocaleString();
 
 /*
